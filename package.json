@@ -1,0 +1,34 @@
+{
+    "author" : "Max Krohn <max@okcupid.com>",
+    "name" : "pubjs",
+    "description" : "A node.js templating language that handles arbitrary and composable nesting",
+    "version" : "0.0.1",
+    "keywords" : [
+	"okws",
+	"pub"
+    ],
+    "preferGlobal" : true,
+    "repository" : {
+	"type" : "git",
+	"url" : "git://github.com/maxtaco/pubjs.git"
+    },
+    "bugs" : {
+	"email" : "max@okcupid.com",
+	"url" : "http://github.com/maxtaco/pubjs/issues"
+    },
+    "main" : "lib/pubjs.js",
+    "bin" : {
+	"tamejs" : "lib/main.js"
+    },
+    "engines" : {
+	"node" : "0.4 || 0.5"
+    },
+    "scripts": {
+    	"test": "node test/harness.js"
+    },	       	       
+    "directories" : {
+	"lib" : "lib",
+	"bin" : "./bin"
+    },
+    "homepage": "http://github.com/maxtaco/pubjs"
+}
