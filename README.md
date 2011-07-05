@@ -15,8 +15,9 @@ Code Examples
 {% for (var i in foo) {
       if (foo[i].cat) {{
       <tr>
-        <td>%{foo[i].cat}<td>
-      </tr>{%  if (foo[i].dog) {{ woof <b>woof!</b> }} %}
+        <td>%{foo[i].cat}</td>
+        {% if (foo[i].dog) {{<td>woof <b>woof!</b></td>}} %}
+      </tr>
       }}
    }
 %}
