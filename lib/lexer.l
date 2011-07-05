@@ -4,12 +4,12 @@
 
 
 <INITIAL>"{%"          { this.begin ('JS_MODE'); return 'JS_OPEN'; }
-<INITIAL>"}}"          { this.popState (); return 'TXT_CLOSE'; }
+<INITIAL>"}}"          { this.popState (); return 'TEXT_CLOSE'; }
 <INITIAL,Q1_MODE,Q2_MODE>"%{" { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
-<INITIAL>[^{}%]+|[{}%] { return 'TXT'; }
+<INITIAL>[^{}%]+|[{}%] { return 'TEXT'; }
 
 <JS_MODE>"%}"          { this.popState (); return 'JS_CLOSE'; }
-<JS_MODE>"{{"          { this.begin ('INITIAL'); return 'TXT_OPEN'; }
+<JS_MODE>"{{"          { this.begin ('INITIAL'); return 'TEXT_OPEN'; }
 <JS_MODE>"\""          { this.begin ('Q2_MODE'); return 'Q2'; }
 <JS_MODE>"'"           { this.begin ('Q1_MODE'); return 'Q1'; }
 <JS_MODE>"/*"          { this.begin ('CC_MODE'); }
