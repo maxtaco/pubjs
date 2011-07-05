@@ -13,10 +13,11 @@ Code Examples
 <body>
 <table>
 {% for (var i in foo) {
-      if (foo[i].cat) {{
+      var rec = foo[i];
+      if (rec.cat) {{
       <tr>
-        <td>%{foo[i].cat}</td>
-        {% if (foo[i].dog) {{<td>woof <b>woof!</b></td>}} %}
+        <td>%{rec.cat}</td>
+        {% if (rec.dog) {{<td>woof <b>woof!</b></td>}} %}
       </tr>
       }}
    }
