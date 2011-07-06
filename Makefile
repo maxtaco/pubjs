@@ -8,6 +8,6 @@ lib/parser.js: lib/parser.y lib/lexer.l
 build: lib/parser.js
 
 clean:
-	rm lib/parser.js 
+	rm -f lib/parser.js test/*.js
 
 all: build
