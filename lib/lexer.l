@@ -5,13 +5,13 @@
 
 <INITIAL>"{%"          { this.begin ('JS_MODE'); return 'JS_OPEN'; }
 <INITIAL>"}}"          { this.popState (); return 'TEXT_CLOSE'; }
-<INITIAL,Q1_MODE,Q2_MODE>"%{" { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
+<INITIAL>"%{"          { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
 <INITIAL>[^{}%]+|[{}%] { return 'TEXT'; }
 
 <JS_MODE>"%}"          { this.popState (); return 'JS_CLOSE'; }
 <JS_MODE>"{{"          { this.begin ('INITIAL'); return 'TEXT_OPEN'; }
-<JS_MODE>"\""          { this.begin ('Q2_MODE'); return 'Q2'; }
-<JS_MODE>"'"           { this.begin ('Q1_MODE'); return 'Q1'; }
+<JS_MODE>"\""          { this.begin ('Q2_MODE'); return 'QUOTE2'; }
+<JS_MODE>"'"           { this.begin ('Q1_MODE'); return 'QUOTE1'; }
 <JS_MODE>"/*"          { this.begin ('CC_MODE'); }
 <JS_MODE>"//".*		/* skip over C++-style comments */
 <JS_MODE><<EOF>>       return 'ENDOFFILE';
@@ -28,13 +28,11 @@
 <IJS2_MODE,IJS_MODE>[^{}]+   { return 'IJS'; }
 <IJS2_MODE,IJS_MODE><<EOF>>  return 'ENDOFFILE';
 
-<Q2_MODE>"%{"           { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
 <Q2_MODE>"\\".          return 'STRING';
 <Q2_MODE>[^\\"]+	return 'STRING';
 <Q2_MODE>"\""		{ this.popState (); return "QUOTE2"; }
 <Q2_MODE><<EOF>>	return 'ENDOFFILE';
 
-<Q1_MODE>"%{"           { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
 <Q1_MODE>"\\".	        return 'STRING';
 <Q1_MODE>[^\\']+	return 'STRING';
 <Q1_MODE>"'"		{ this.popState (); return "QUOTE1"; }
