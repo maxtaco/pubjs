@@ -1,0 +1,11 @@
+<html>
+ <foo>
+  <bar>
+</bar>
+</foo>
+<body>
+{% if (foo) {{<img src="%{poke.bar.excellent}"/>}}
+   else     {{<i>nothing</i>}}
+%}
+</body>
+</html>
