@@ -28,7 +28,5 @@ Code Examples
 
 TODOS
 -----
-* test foreach
-* test deeper nesting
+* test / debug foreach
 * make an express wrapper
-* debug more the inplace output system

@@ -8,4 +8,10 @@
    else     {{<i>nothing</i>}}
 %}
 </body>
+{% if (x) {{
+    x = %{x};
+    {% if (y) {{ y = %{y} }} %}
+    z = %{z};
+   }} 
+%}
 </html>
