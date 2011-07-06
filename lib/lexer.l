@@ -1,5 +1,5 @@
 
-%s JS_MODE Q1_MODE Q2_MODE IJS_MODE IJS2_MODE CC_MODE
+%s JS_MODE Q1_MODE Q2_MODE IJS_MODE IJS2_MODE CC_MODE FOREACH_MODE
 %%
 
 
@@ -14,8 +14,13 @@
 <JS_MODE>"'"           { this.begin ('Q1_MODE'); return 'Q1'; }
 <JS_MODE>"/*"          { this.begin ('CC_MODE'); }
 <JS_MODE>"//".*		/* skip over C++-style comments */
-<JS_MODE>[^{%"'/]+|[{%"'/] { return 'JS'; }
 <JS_MODE><<EOF>>       return 'ENDOFFILE';
+<JS_MODE>"foreach"     { this.begin ('FOREACH_MODE'); return 'FOREACH'; }
+<JS_MODE>[^{(%"'/f]+   { return 'JS'; }
+<JS_MODE>[{(%"'/f]     { return 'JS'; }
+
+<FOREACH_MODE>[^{]+    { return 'TEXT'; }
+<FOREACH_MODE>[{]      { this.popState (); return 'LBRACE'; }
 
 <IJS_MODE>"{"          { this.begin ('IJS2_MODE'); return 'IJS'; }
 <IJS_MODE>"}"          { this.popState (); return 'IJS_CLOSE'; }
