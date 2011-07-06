@@ -18,7 +18,7 @@
     },
     "main" : "lib/pubjs.js",
     "bin" : {
-	"tamejs" : "lib/main.js"
+	"pubjs" : "lib/main.js"
     },
     "engines" : {
 	"node" : "0.4 || 0.5"
