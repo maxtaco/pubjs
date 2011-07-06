@@ -26,3 +26,9 @@ Code Examples
 ```
    
 
+TODOS
+-----
+* test foreach
+* test deeper nesting
+* make an express wrapper
+* debug more the inplace output system
