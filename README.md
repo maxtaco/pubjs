@@ -30,3 +30,5 @@ TODOS
 -----
 * test / debug foreach
 * make an express wrapper
+* regtest suite
+* documentation (flesh out this file)
