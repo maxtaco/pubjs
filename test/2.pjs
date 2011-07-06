@@ -4,7 +4,7 @@
 </bar>
 </foo>
 <body>
-{% if (foo) {{<b>something</b>}}
+{% if (foo) {{<img src="%{poke.bar.excellent}"/>}}
    else     {{<i>nothing</i>}}
 %}
 </body>
