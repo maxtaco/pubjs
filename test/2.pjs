@@ -13,5 +13,12 @@
     {% if (y) {{ y = %{y} }} %}
     z = %{z};
    }} 
+   foreach (var jam in jams) {{
+     <tr>
+      <td>%{jam}
+      </td>
+     <tr>
+   }}
 %}
+
 </html>

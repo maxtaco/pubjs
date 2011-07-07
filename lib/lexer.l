@@ -19,8 +19,16 @@
 <JS_MODE>[^{(%"'/f]+   { return 'JS'; }
 <JS_MODE>[{(%"'/f]     { return 'JS'; }
 
-<FOREACH_MODE>[^{]+    { return 'TEXT'; }
+<FOREACH_MODE>[^{]+    { 
+                          return 'TEXT'; 
+                       }
+<FOREACH_MODE>"{{"     { 
+                         this.popState (); 
+                         this.begin ("INITIAL"); 
+                         return 'TEXT_OPEN'; 
+                       }
 <FOREACH_MODE>[{]      { this.popState (); return 'LBRACE'; }
+
 
 <IJS_MODE>"{"          { this.begin ('IJS2_MODE'); return 'IJS'; }
 <IJS_MODE>"}"          { this.popState (); return 'IJS_CLOSE'; }
