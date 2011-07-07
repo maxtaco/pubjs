@@ -25,7 +25,7 @@ JavaScript, and the function `print` to output HTML:
 ```html
 <b>Name</b>: %{name}<br/>
 {% if (pet) { print ("<b>Pet</b>: ", pet); } 
-   else     { print ("<i>no pets</i>"); %}</br>
+   else     { print ("<i>no pets</i>"); } %}</br>
 <b>Passion</b>: %{passion}<br/>
 ```
 
