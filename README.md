@@ -24,11 +24,24 @@ Code Examples
 %}
 </table>
 ```
+
+We've also taken the liberty of adding a bona fide `foreach` to JavaScript:
+
+```html
+<table>
+{% foreach (var row in rows) {{
+   <tr>
+   {% foreach (var col in row) {{
+   <td>%{col}</td>
+   }} %}
+   </tr>
+}}
+%}
+</table>
    
 
 TODOS
 -----
-* test / debug foreach
 * make an express wrapper
 * regtest suite
 * documentation (flesh out this file)
