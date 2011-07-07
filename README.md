@@ -42,10 +42,31 @@ We've also taken the liberty of adding a bona fide `foreach` to JavaScript:
 %}
 </table>
 ```
+
+Usage
+-----
+
+To install:
+
+    npm install -g pubjs
+
+To use in express:
+
+```javascript
+
+// Regigster the handler...
+app.register ('.pjs', require ('pubjs'));
+
+// Then invoke it as needs be...
+app.get('/', function(req, res){
+  res.render('index.pjs', {
+    title: 'Express'
+  });
+});
+```
    
 
 TODOS
 -----
-* make an express wrapper
 * regtest suite
 * documentation (flesh out this file)
