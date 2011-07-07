@@ -46,9 +46,9 @@ And as advertised, you are free to go as deeply nested as you please:
 {% if (pet) {{
     <b>Pet</b>:
     {% if (pet.type == "dog") {{
-           Goes woof! (
-           {% if (pet.sex == "M") {{and is spayed }}
-              else                {{and is neutered }}
+           Goes woof! (and is
+           {% if (pet.sex == "M") {{spayed }}
+              else                {{neutered }}
            %}
            so doesn't reproduce)
        }} else if (pet.type == "cat") {{
