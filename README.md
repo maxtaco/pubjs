@@ -39,8 +39,7 @@ any block of the form `{{..}}`.  An equivalent way to write the above is:
 <b>Passion</b>: %{passion}<br/>
 ```
 
-And as advertised, you are free to switch back and forth as deeply
-nested as you please:
+And as advertised, you are free to go as deeply nested as you please:
 
 ```html
 <b>Name</b>: %{name}<br/>
