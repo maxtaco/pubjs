@@ -5,27 +5,62 @@ Yet another *node.js* templating system.
 It differs from all others we've seen because it offer arbitrary nesting
 of code and HTML output.  
 
-Code Examples
--------------
+Tutorial and Code Examples
+-------------------------
+
+By default, input is in HTML mode, in which all input data is
+passed through as output data, with the exception of expressions
+of the form `%{foo}`, which are first evaluated by JavaScript, and
+then output:
 
 ```html
-<html>
-<body>
-<table>
-{% for (var i in foo) {
-      var rec = foo[i];
-      if (rec.cat) {{
-      <tr>
-        <td>%{rec.cat}</td>
-        {% if (rec.dog) {{<td>woof <b>woof!</b></td>}} %}
-      </tr>
-      }}
-   }
-%}
-</table>
+<b>Name</b>: %{name}<br/>
+<b>Passion</b>: %{passion}<br/>
 ```
 
-We've also taken the liberty of adding a bona fide `foreach` to JavaScript:
+However you can switch from HTML mode into JavaScript mode, with the
+`{% .. %}` environment.  Inside JavaScript environment, use normal
+JavaScript, and the function `print` to output HTML:
+
+```html
+<b>Name</b>: %{name}<br/>
+{% if (pet) { print ("<b>Pet</b>: ", pet); } 
+   else     { print ("<i>no pets</i>"); %}</br>
+<b>Passion</b>: %{passion}<br/>
+```
+
+You can also switch back to HTML mode from within JavaScript mode, with
+any block of the form `{{..}}`.  An equivalent way to write the above is:
+
+```html
+<b>Name</b>: %{name}<br/>
+{% if (pet) {{<b>Pet</b>: %{pet} }}
+   else     {{<i>No pets!</i>}} %}</br>
+<b>Passion</b>: %{passion}<br/>
+```
+
+And as advertised, you are free to switch back and forth as deeply
+nested as you please:
+
+```html
+<b>Name</b>: %{name}<br/>
+{% if (pet) {{
+      <b>Pet</b>:
+      {% if (pet.type == "dog") {{
+            Goes woof! (
+	    {% if (pet.sex == "M") {{and is spayed }}
+               else                {{and is neutered }}
+            %}
+            so doesn't reproduce)
+         }} else if (pet.type == "cat") {{
+            Goes meow!
+         }}
+      %}
+}} else {{<i>no pet!</i>}} %}
+```
+
+We've also taken the liberty of adding a bona fide `foreach` to JavaScript,
+for simplified iteration:
 
 ```html
 <table>
