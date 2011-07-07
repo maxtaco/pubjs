@@ -19,8 +19,8 @@ then output:
 ```
 
 However you can switch from HTML mode into JavaScript mode, with the
-`{% .. %}` environment.  Inside JavaScript environment, use normal
-JavaScript, and the function `print` to output HTML:
+`{% .. %}` environment.  Inside a JavaScript environment, use normal
+JavaScript, and also the function `print` to output HTML:
 
 ```html
 <b>Name</b>: %{name}<br/>
