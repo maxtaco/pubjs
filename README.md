@@ -45,17 +45,17 @@ nested as you please:
 ```html
 <b>Name</b>: %{name}<br/>
 {% if (pet) {{
-      <b>Pet</b>:
-      {% if (pet.type == "dog") {{
-            Goes woof! (
-	    {% if (pet.sex == "M") {{and is spayed }}
-               else                {{and is neutered }}
-            %}
-            so doesn't reproduce)
-         }} else if (pet.type == "cat") {{
+    <b>Pet</b>:
+    {% if (pet.type == "dog") {{
+           Goes woof! (
+           {% if (pet.sex == "M") {{and is spayed }}
+              else                {{and is neutered }}
+           %}
+           so doesn't reproduce)
+       }} else if (pet.type == "cat") {{
             Goes meow!
-         }}
-      %}
+       }}
+    %}
 }} else {{<i>no pet!</i>}} %}
 ```
 
