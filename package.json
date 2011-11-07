@@ -20,9 +20,7 @@
     "bin" : {
 	"pubjs" : "lib/main.js"
     },
-    "engines" : {
-	"node" : "0.4 || 0.5"
-    },
+    "engine" : "node >= 0.4",
     "scripts": {},	       	       
     "directories" : {
 	"lib" : "lib",
