@@ -1,15 +1,16 @@
 
-%s JS_MODE Q1_MODE Q2_MODE IJS_MODE IJS2_MODE CC_MODE FOREACH_MODE
+%s JS_MODE Q1_MODE Q2_MODE IJS_MODE IJS2_MODE CC_MODE FOREACH_MODE TEXT_MODE
 %%
 
 
-<INITIAL>"{%"          { this.begin ('JS_MODE'); return 'JS_OPEN'; }
-<INITIAL>"}}"          { this.popState (); return 'TEXT_CLOSE'; }
-<INITIAL>"%{"          { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
-<INITIAL>[^{}%]+|[{}%] { return 'TEXT'; }
+<INITIAL,TEXT_MODE>"{%"          { this.begin ('JS_MODE'); return 'JS_OPEN'; }
+<TEXT_MODE>"}}"                  { this.popState (); return 'TEXT_CLOSE'; }
+<INITIAL,TEXT_MODE>"%{"          { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
+<INITIAL,TEXT_MODE>"\\"[%{}]     { yytext = yytext.slice(1); return 'TEXT'; }
+<INITIAL,TEXT_MODE>[^{}%\\]+|[\\{}%] { return 'TEXT'; }
 
 <JS_MODE>"%}"          { this.popState (); return 'JS_CLOSE'; }
-<JS_MODE>"{{"          { this.begin ('INITIAL'); return 'TEXT_OPEN'; }
+<JS_MODE>"{{"          { this.begin ('TEXT_MODE'); return 'TEXT_OPEN'; }
 <JS_MODE>"\""          { this.begin ('Q2_MODE'); return 'QUOTE2'; }
 <JS_MODE>"'"           { this.begin ('Q1_MODE'); return 'QUOTE1'; }
 <JS_MODE>"/*"          { this.begin ('CC_MODE'); }
@@ -24,7 +25,7 @@
                        }
 <FOREACH_MODE>"{{"     { 
                          this.popState (); 
-                         this.begin ("INITIAL"); 
+                         this.begin ("TEXT_MODE"); 
                          return 'TEXT_OPEN'; 
                        }
 <FOREACH_MODE>[{]      { this.popState (); return 'LBRACE'; }
