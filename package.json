@@ -2,7 +2,7 @@
     "author" : "Max Krohn <max@okcupid.com>",
     "name" : "pubjs",
     "description" : "A node.js templating language that handles arbitrary and composable nesting",
-    "version" : "0.0.7",
+    "version" : "0.0.8",
     "keywords" : [
 	"okws",
 	"pub"
