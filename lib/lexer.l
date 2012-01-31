@@ -1,8 +1,10 @@
 
 %s JS_MODE Q1_MODE Q2_MODE IJS_MODE IJS2_MODE CC_MODE FOREACH_MODE TEXT_MODE
+%s COMMENT_MODE
 %%
 
 
+<INITIAL,TEXT_MODE>"{%%"         { this.begin ('COMMENT_MODE'); }
 <INITIAL,TEXT_MODE>"{%"          { this.begin ('JS_MODE'); return 'JS_OPEN'; }
 <TEXT_MODE>"}}"                  { this.popState (); return 'TEXT_CLOSE'; }
 <INITIAL,TEXT_MODE>"%{"          { this.begin ('IJS_MODE'); return 'IJS_OPEN'; }
@@ -29,6 +31,9 @@
                          return 'TEXT_OPEN'; 
                        }
 <FOREACH_MODE>[{]      { this.popState (); return 'LBRACE'; }
+
+<COMMENT_MODE>"%%}"     { this.popState(); }
+<COMMENT_MODE>[^%]+|[%] /* skip over comments */
 
 
 <IJS_MODE>"{"          { this.begin ('IJS2_MODE'); return 'IJS'; }
