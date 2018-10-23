@@ -104,3 +104,4 @@ TODOS
 -----
 * regtest suite
 * documentation (flesh out this file)
+* hi
